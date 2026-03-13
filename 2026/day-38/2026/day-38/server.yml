@@ -1,0 +1,20 @@
+# task : 3
+server:
+  name: web-server
+  ip: 192.168.1.10
+  port: 80
+
+database:
+  host: localhost
+  name: appdb
+  credentials:
+    user: admin
+    password: secret@123
+
+# task : 4
+
+startup_script_pipe: |     # this is Pipe Style |
+  echo "Starting server"
+  sudo systemctl start nginx
+  echo "Server started"
+

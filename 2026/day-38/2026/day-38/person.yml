@@ -1,0 +1,19 @@
+name: Praveen  # this is my name 
+
+role: Linux System admin  # this is my job role 
+
+experience_years: 6    # experience 
+
+learning: true         # boolean value
+
+# task : 2
+
+tools:
+  - git
+  - docker
+  - kubernetes
+  - github-actions
+  - aws
+
+hobbies: [learning, cooking, reading, watching movie]
+
