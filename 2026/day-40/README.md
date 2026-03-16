@@ -5,7 +5,6 @@ Today you write your **first GitHub Actions pipeline** and watch it run in the c
 
 This is the moment CI/CD stops being a concept and becomes real.
 
----
 
 ## Expected Output
 - A workflow file: `.github/workflows/hello.yml`
