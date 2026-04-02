@@ -53,3 +53,16 @@ RUN npm install                     # Run command
 EXPOSE 3000                         # Expose port
 CMD ["node","app.js"]               # Default command
 ENTRYPOINT ["node"]                 # Fixed command
+
+##  Docker Compose (Important)
+
+docker compose up -d              # Start all services in background
+docker compose up --build        # Rebuild and start
+docker compose down              # Stop and remove containers
+docker compose down -v           # Remove containers + volumes
+docker compose ps                # List services
+docker compose logs              # Show logs
+docker compose logs -f           # Follow logs
+docker compose exec web bash     # Enter container
+docker compose build             # Build images
+docker compose restart           # Restart services
