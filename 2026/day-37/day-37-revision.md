@@ -225,3 +225,142 @@ Host port → container port
 
 ## Q8: Disk usage?
 docker system df  
+
+# Docker Compose – Deep Revision
+
+
+#  What is Docker Compose?
+
+Docker Compose is a tool used to define and run **multi-container applications** using a YAML file.
+
+Instead of running multiple docker run commands  
+You define everything in one file → docker-compose.yml
+
+#  Why Compose?
+
+Without Compose:
+docker run node  
+docker run mongo  
+docker run nginx  
+
+ Hard to manage  
+ No networking control  
+ No dependency handling  
+
+With Compose:
+One command → full app runs  
+Auto networking  
+Clean structure  
+
+
+#  docker-compose.yml Structure
+
+version: "3"
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    environment:
+      - DB_HOST=mongo
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+
+#  Key Concepts
+
+## 1. services
+Each container = one service
+
+## 2. build vs image
+build → build from Dockerfile  
+image → pull from Docker Hub  
+
+## 3. ports
+Host:Container mapping
+
+## 4. volumes
+Persist data
+
+## 5. environment
+Pass env variables
+
+## 6. depends_on
+Controls start order
+
+ IMPORTANT:
+depends_on does NOT wait for DB ready
+
+#  Networking in Compose
+
+ All services automatically connected  
+ Use service name as hostname
+
+Example:
+mongodb://mongo:27017
+
+#  Real Example (Node + Mongo)
+
+app connects to mongo using:
+DB_HOST=mongo
+
+ No IP needed
+
+
+# Common Commands Explained
+
+## Start App
+docker compose up -d
+
+## Stop App
+docker compose down
+
+## Remove Everything (including data)
+docker compose down -v
+
+## Logs
+docker compose logs -f
+
+## Enter Container
+docker compose exec app bash
+
+#  Common Interview Questions
+
+## Q1: Difference between docker run and compose?
+docker run → single container  
+compose → multi-container  
+
+## Q2: Why use Compose?
+Automation + scalability + readability  
+
+## Q3: How containers communicate?
+Using service name  
+## Q4: depends_on limitation?
+Does not wait for readiness  
+
+## Q5: Where env variables stored?
+.env file 
+
+#  Pro Tips
+Always use .env file  
+Use named volumes for DB  
+Use depends_on + healthcheck  
+Never hardcode credentials  
+
+#  Summary
+Docker Compose =  
+ Define  
+ Run  
+ Manage  
+ Multi-container apps easily  
+
